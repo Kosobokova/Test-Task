@@ -8,32 +8,34 @@
                 });
 
             $scope.addItem = function (firstName, lastName, age, email, phone) {
-                $scope.customer.push({ FirstName: firstName, LastName: lastName, Age: age, Email: email, Phone: phone });
+                
 
                 var tosend = { FirstName: firstName, LastName: lastName, Age: age, Email: email, Phone: phone };
 
                 $http({ method: 'POST', url: '/api/TestCRUD', data: JSON.stringify(tosend) }).then(function success(response) {
                     $scope.response = response.data;
+                    $scope.customer.push({ FirstName: firstName, LastName: lastName, Age: age, Email: email, Phone: phone });
                 })
             };
 
             $scope.updateItem = function (cust) {
-                $scope.customer = cust;
+                
 
                 var tosend = cust;
 
                 $http({ method: 'PUT', url: '/api/TestCRUD', data: JSON.stringify(tosend) }).then(function success(response) {
                     $scope.response = response.data;
+                    $scope.customer = cust;
                 })
             };
 
             $scope.deleteItem = function (item) {
                 var index = $scope.customer.indexOf(item);
                 var tosend = $scope.customer[index];
-                $scope.customer.splice(index, 1); 
 
                 $http({ method: 'delete', url: '/api/TestCRUD', data: angular.toJson(tosend), headers: { 'Content-Type': 'application/json' } }).then(function success(response) {
                     $scope.response = response.data;
+                    $scope.customer.splice(index, 1);
                 })
             };
 });
