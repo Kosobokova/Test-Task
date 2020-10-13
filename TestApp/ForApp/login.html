@@ -1,0 +1,27 @@
+﻿
+<div>
+    <h3>Регистрация</h3>
+    <label>Введите логин</label><br />
+    <input class="form-control" ng-model="email" placeholder="Логин" />
+    <label>Введите пароль</label><br />
+    <input class="form-control" ng-model="pwd" placeholder="Пароль" />
+    <label>Подтвердите пароль</label><br />
+    <input class="form-control" ng-model="confirmpwd" placeholder="Подтверждение пароля" />
+    <button class="btn btn-default" ng-click="register(email, pwd, confirmpwd)">Регистрация</button>
+</div>
+
+<div>
+    <h3>Вход на сайт</h3>
+    <label>Введите email</label><br />
+    <input class="form-control" ng-model="emaillogin" placeholder="Email" />
+    <label>Введите пароль</label><br />
+    <input class="form-control" ng-model="passwordLogin" placeholder="Пароль" />
+    <button class="btn btn-default" ng-click="submitLogin(emaillogin, passwordLogin)">Логин</button>
+</div>
+<div />
+<!--
+ <div ng-show="data.visible">
+    <p>Вы вошли в систему</p>
+    <p class="form-control">{{UserName}}</p>
+    <button class="btn btn-default" ng-click="logOut()">Выйти</button>
+</div> -->

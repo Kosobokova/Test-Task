@@ -109,9 +109,17 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="ForApp\admin.html" />
+    <Content Include="ForApp\adminCtrl.js" />
+    <Content Include="ForApp\cust.html" />
+    <Content Include="ForApp\custCtrl.js" />
     <Content Include="ForApp\IndexCtrl.js" />
+    <Content Include="ForApp\login.html" />
+    <Content Include="ForApp\loginCtrl.js" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\errors.json" />

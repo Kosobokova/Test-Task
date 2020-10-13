@@ -1,41 +1,40 @@
-﻿ var custApp = angular.module("custApp", []);
-        custApp.controller("custController", function ($scope, $http) {
+﻿var custApp = angular.module("custApp", ["ngRoute"]);
 
-            $http({ method: 'GET', url: '/api/TestCRUD' }).
-                then(function success(response) {
-
-                    $scope.customer = response.data;
+        custApp.config(function ($routeProvider) {
+            $routeProvider.when('/cust',
+                {
+                    templateUrl: 'Forapp/cust.html',
+                    controller: 'custController'
                 });
+            $routeProvider.when('/admin',
+                {
+                    templateUrl: 'Forapp/admin.html',
+                    controller: 'adminController'
+                });
+            $routeProvider.when('/login',
+                {
+                    templateUrl: 'Forapp/login.html',
+                    controller: 'loginController'
+                });
+            $routeProvider.otherwise({ redirectTo: '/login' });
+        });
 
-            $scope.addItem = function (firstName, lastName, age, email, phone) {
-                
+        custApp.factory('dataService', function ($http) {
+            return {
+                getData: function () {
+                    var responseCustomers;
+                    $http({ method: 'GET', url: '/api/TestCRUD' }).
+                        then(function success(response) {
+                            responseCustomers = response.data;
+                        });
 
-                var tosend = { FirstName: firstName, LastName: lastName, Age: age, Email: email, Phone: phone };
+                    return responseCustomers;
+                }
+            }
+        })
 
-                $http({ method: 'POST', url: '/api/TestCRUD', data: JSON.stringify(tosend) }).then(function success(response) {
-                    $scope.response = response.data;
-                    $scope.customer.push({ FirstName: firstName, LastName: lastName, Age: age, Email: email, Phone: phone });
-                })
-            };
 
-            $scope.updateItem = function (cust) {
-                
 
-                var tosend = cust;
 
-                $http({ method: 'PUT', url: '/api/TestCRUD', data: JSON.stringify(tosend) }).then(function success(response) {
-                    $scope.response = response.data;
-                    $scope.customer = cust;
-                })
-            };
 
-            $scope.deleteItem = function (item) {
-                var index = $scope.customer.indexOf(item);
-                var tosend = $scope.customer[index];
-
-                $http({ method: 'delete', url: '/api/TestCRUD', data: angular.toJson(tosend), headers: { 'Content-Type': 'application/json' } }).then(function success(response) {
-                    $scope.response = response.data;
-                    $scope.customer.splice(index, 1);
-                })
-            };
-});
+        
